@@ -1,6 +1,6 @@
 module github.com/monorozo/gotwettero
 
-go 1.23
+go 1.19
 
 require golang.org/x/vuln v0.0.0-20221025230227-995372c58a16
 
