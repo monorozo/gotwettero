@@ -21,28 +21,28 @@ func Registro(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(t.Email) == 0 {
-		http.Error(w, "El email es un campo obligatorio", 401)
+		http.Error(w, "El email es un campo obligatorio", 400)
 		return
 	}
 	if len(t.Password) < 6 {
-		http.Error(w, "La contraseña debe tener minimo 6 caracteres ", 402)
+		http.Error(w, "La contraseña debe tener minimo 6 caracteres ", 400)
 		return
 	}
 
 	_, encontrado, _ := bd.ChequeoYaExisteUsuario(t.Email)
 	if encontrado == true {
-		http.Error(w, "el email ingreasdo ya se encuentra registrado", 403)
+		http.Error(w, "el email ingresado ya se encuentra registrado en el sistema", 400)
 		return
 	}
 
 	_, status, err := bd.InsertoRegistro(t)
 	if err != nil {
-		http.Error(w, "Ocurrio un error al realizar el registro del usuario ingresado"+err.Error(), 404)
+		http.Error(w, "Ocurrio un error al realizar el registro del usuario ingresado"+err.Error(), 400)
 		return
 	}
 
 	if status == false {
-		http.Error(w, "No se pudo realizar el registro del usuario ingrsado", 405)
+		http.Error(w, "No se pudo realizar el registro del usuario ingrsado", 400)
 		return
 	}
 

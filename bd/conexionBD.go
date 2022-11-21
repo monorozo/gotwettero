@@ -17,7 +17,6 @@ func ConectarBD() *mongo.Client {
 
 	client, err := mongo.Connect(context.TODO(), clienteOptions)
 	if err != nil {
-
 		log.Fatal(err.Error())
 		return client
 	}

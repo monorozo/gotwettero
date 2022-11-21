@@ -19,10 +19,12 @@ func Manejadore() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/registro", middlew.ChequeoBD(routers.Registro)).Methods("POST")
+	router.HandleFunc("/login", middlew.ChequeoBD(routers.Login)).Methods("POST")
+	router.HandleFunc("/verperfil", middlew.ChequeoBD(middlew.ValidoJWT(router.VerPerfil))).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
-		PORT = "8080"
+		PORT = "8082"
 	}
 	/*handler es un objeto que filtra y valida los permisos */
 	/*Manejadores seteo mi puerto el handlrer y coloco a escuchar al servidor*/
